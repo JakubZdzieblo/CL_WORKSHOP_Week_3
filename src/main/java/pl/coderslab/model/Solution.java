@@ -5,32 +5,28 @@ import java.util.Objects;
 
 public class Solution {
 
-    private Long id;
-    private Long userId;
-    private String exercise;
-    private String content;
+    private int id;
     private LocalDateTime created;
+    private LocalDateTime updated;
+    private String description;
+    private int exerciseId;
+    private int userId;
 
     public Solution() {
     }
 
-    public Solution(Long id, Long userId, String exercise, String content, LocalDateTime created) {
+    public Solution(int id, LocalDateTime created, LocalDateTime updated, String description, int exerciseId, int userId) {
         this.id = id;
-        this.userId = userId;
-        this.exercise = exercise;
-        this.content = content;
         this.created = created;
+        this.updated = updated;
+        this.description = description;
+        this.exerciseId = exerciseId;
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
-        return "Solution{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", exercise='" + exercise + '\'' +
-                ", content='" + content + '\'' +
-                ", created=" + created +
-                '}';
+        return "id: " + id + " by " + userId + " to exercise " + exerciseId +"; '" + description + "'";
     }
 
     @Override
@@ -41,41 +37,36 @@ public class Solution {
         return Objects.equals(id, solution.id);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getExercise() {
-        return exercise;
+    public int getExerciseId() {
+        return exerciseId;
     }
 
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getCreated() {
@@ -86,6 +77,11 @@ public class Solution {
         this.created = created;
     }
 
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
 
-
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
 }
