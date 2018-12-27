@@ -16,7 +16,7 @@
         </tr>
         <c:forEach items="${solutions}" var="solution">
             <tr>
-                <td>${solution.exercise}</td>
+                <td>${solution.exerciseId}</td>
                 <td>${solution.userId}</td>
                 <td>${solution.created}</td>
                 <%--<c:url var="linkToSolution" value="/show-solution">--%>

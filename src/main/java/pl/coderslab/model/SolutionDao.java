@@ -3,7 +3,6 @@ package pl.coderslab.model;
 import pl.coderslab.service.DBService;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,21 +11,20 @@ import java.util.List;
 public class SolutionDao {
 
 
-    public static List<Solution> loadFirst(int i) {
-        ArrayList<Solution> solutions = new ArrayList<>();
-        // solutions.add(new Solution(1L, 1L, "Hello", "Nie umiem", LocalDateTime.now()));
-        return solutions;
+    public static List<Solution> loadFirst(int lim) {
+        String query = "select * from `solution` order by `created` desc limit " + lim;
+        return getSolutions(query, null);
     }
 
     public static List<Solution> loadAllByUserId (int id) {
-        String query = "select * from solution where users_id = ?";
-        String[] param = { String.valueOf(id)};
+        String query = "select * from `solution` where `users_id` = ?";
+        String[] param = { String.valueOf(id) };
         return getSolutions(query, param);
     }
 
     public static List<Solution> loadAllByExerciseId (int id) {
-        String query = "select * from solution where exercise_id = ? order by updated desc";
-        String[] param = { String.valueOf(id)};
+        String query = "select * from `solution` where `exercise_id` = ? order by `updated` desc";
+        String[] param = { String.valueOf(id) };
         return getSolutions(query, param);
     }
 
@@ -96,13 +94,13 @@ public class SolutionDao {
 
         String query = "Insert into `solution` Values (null,?,?,?,?,?);";
         String[] params = new String[5];
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        params[0] = sdf.format(solution.getCreated());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        params[0] = solution.getCreated().format(formatter);
 
         if (solution.getUpdated() == null) {
             params[1] = null;
         } else {
-            params[1] = sdf.format(solution.getUpdated());
+            params[1] = solution.getUpdated().format(formatter);
         }
 
         params[2] = solution.getDescription();

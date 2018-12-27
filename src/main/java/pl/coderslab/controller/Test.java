@@ -1,5 +1,6 @@
 package pl.coderslab.controller;
 
+import pl.coderslab.model.Solution;
 import pl.coderslab.model.SolutionDao;
 import pl.coderslab.model.UserGroup;
 import pl.coderslab.model.UserGroupDao;
@@ -18,10 +19,12 @@ public class Test extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<UserGroup> userGroups = UserGroupDao.loadAll();
 
-        for (UserGroup ug : userGroups) {
-            resp.getWriter().println(ug);
+        List<Solution> solutions = SolutionDao.loadAll();
+
+        for (Solution sol : solutions) {
+            resp.getWriter().println(sol);
+            resp.getWriter().println("Created: " + sol.getCreated() + ", Updated: " + sol.getUpdated());
         }
 
     }
