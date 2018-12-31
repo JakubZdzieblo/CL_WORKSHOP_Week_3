@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserDao {
 
-    public void save(User user){
+    public static void save(User user){
 
         if(user.getId() == 0){
             addToDb(user);
