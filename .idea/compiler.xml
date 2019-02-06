@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="CL_WORKSHOP_Week_3" />
         <module name="workshop3" />
       </profile>
     </annotationProcessing>
